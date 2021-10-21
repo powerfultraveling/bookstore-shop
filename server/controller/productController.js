@@ -44,15 +44,25 @@ const productController = {
     const name = req.body.name;
     const description = req.body.description;
     const price = req.body.price;
-    const image = req.body.image;
     const amount = req.body.amount;
     const categoriesId = req.body.category;
+    let image;
+
+
+    if(req.file){
+      image = req.file.path;
+      console.log("image uploaded success")
+      console.log(image);
+      let arr = image.split("public");
+      image = arr[1];
+    }
+
     Product.create({
       name: name,
       description: description,
       price: price,
-      image: image,
       amount: amount,
+      image: image,
       categoriesId: categoriesId,
     })
       .then(() => {
@@ -61,6 +71,43 @@ const productController = {
       .catch(() => {
         res.json({ ok: 0 });
       });
+  },
+
+  editProduct: (req, res) =>{
+    const id = req.params.id;
+    const name = req.body.name;
+    const description = req.body.description;
+    const price = req.body.price;
+    const amount = req.body.amount;
+    const categoriesId = req.body.category;
+    let image;
+
+    if(req.file){
+      image = req.file.path;
+      console.log("image uploaded success")
+      console.log(image);
+      let arr = image.split("public");
+      image = arr[1];
+    }
+
+    Product.update({
+      name: name,
+      description: description,
+      price: price,
+      amount: amount,
+      image: image,
+      categoriesId: categoriesId,
+    }, {
+      where: {
+        id:id
+      }
+    })
+    .then(() => {
+      res.json({ ok: 1 });
+    })
+    .catch(() => {
+      res.json({ ok: 0 });
+    })
   },
 
   deleteProduct: (req, res) => {

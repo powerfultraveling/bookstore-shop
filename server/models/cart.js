@@ -9,15 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Cart.belongsTo(models.User, {
-        foreignKey: "userid",
+        foreignKey: `userid`,
+        targetKey: `id`,
+      });
+      this.hasMany(models.CartItem, {
+        foreignKey: "cartId",
         targetKey: "id",
       });
     }
   }
   Cart.init(
     {
-      userid: DataTypes.STRING,
-      updatesAt: DataTypes.DATE,
+      userid: DataTypes.INTEGER,
       comment: DataTypes.STRING,
     },
     {

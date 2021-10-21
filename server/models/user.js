@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasMany(models.Cart, {
-        foreignKey: "categoriesid",
-        targetKey: "id",
+        foreignKey: `userid`,
+        targetKey: `id`,
       });
     }
   }
