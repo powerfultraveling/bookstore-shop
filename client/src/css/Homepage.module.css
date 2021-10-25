@@ -1,0 +1,50 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.landing {
+  position: relative;
+  background-image: url("../img/Web\ 1280\ –\ 1@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+}
+
+.landing_cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.landing_info_box {
+  width: 300px;
+  color: black;
+  margin-top: 40px;
+}
+
+.landing_title {
+  font-size: 50px;
+}
+
+.read_btn {
+  background-color: #fff;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 15px;
+  width: 100px;
+  height: 40px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: color 2s;
+}
+
+.read-btn:hover {
+  color: purple;
+}

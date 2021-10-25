@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.sideBar-div {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(240, 240, 240);
+}
+
+.small-block {
+  margin-top: 40px;
+}
+
+.small-block-title {
+  font-size: 20px;
+  color: rgb(172, 172, 172);
+  margin-bottom: 10px;
+}
+
+.small-block-item {
+  margin-bottom: 5px;
+}

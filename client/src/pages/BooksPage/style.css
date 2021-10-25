@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  width: 300px;
+}
+
+.card-image {
+  width: 100px;
+  height: auto;
+}
+
+.image-box {
+  background-color: grey;
+}

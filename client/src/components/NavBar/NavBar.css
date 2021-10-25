@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ft-white {
+  color: white;
+}
+
+.ft-TC {
+  font-family: "Noto Serif TC", serif;
+}
+
+.ft-500 {
+  font-weight: 600;
+}
+
+.ftsz-24 {
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-nav {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.isLoading {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
