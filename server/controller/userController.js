@@ -44,6 +44,7 @@ const userController = {
   logIn: (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
+    console.log(password);
 
     User.findOne({
       where: {

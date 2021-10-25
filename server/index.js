@@ -7,6 +7,7 @@ const port = 3001;
 const bodyParser = require("body-parser");
 const productController = require("./controller/productController");
 const userController = require("./controller/userController");
+const cartController = require("./controller/cartController");
 
 //some setting
 app.use(express.static(__dirname + "/public"));
@@ -46,6 +47,7 @@ app.post("/api/register", userController.register);
 app.post("/api/login", userController.logIn);
 app.get("/api/authorize", userController.authorize);
 app.post("/api/cart", cartController.addCart);
+app.get("/api/cart/:id", cartController.getCart);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
