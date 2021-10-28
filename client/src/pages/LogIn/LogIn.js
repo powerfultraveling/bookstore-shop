@@ -38,7 +38,7 @@ export default function LogIn() {
         <div className={styles.login_box}>
           <form className={styles.login_form} onSubmit={handleSubmit}>
             <div>
-              <img src="../../img/logo.png" style={{ width: "100px" }}></img>
+              <img src="../../img/login.png" style={{ width: "100px" }}></img>
             </div>
             <div>
               <h2 className={styles.title}>登入</h2>
