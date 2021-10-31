@@ -36,7 +36,7 @@ function App() {
               <Route path="/admin">
                 <AdminOrder />
               </Route>
-              <Route path="/cart/:id">
+              <Route path="/cart">
                 <Cart />
               </Route>
               <Route path="/stationary/:id">

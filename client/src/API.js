@@ -33,6 +33,24 @@ export function register(firstname, lastname, email, password) {
   }).then((res) => res.json());
 }
 
+export function googleAuth(firstname, lastname, email) {
+  console.log("here am i !");
+  return fetch(`${baseURL}/google/login`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      role: "user",
+    }),
+  }).then((res) => {
+    return res.json();
+  });
+}
+
 export function getMe(token) {
   console.log(token);
   if (!token) {
@@ -44,7 +62,7 @@ export function getMe(token) {
     },
   })
     .then((res) => {
-      console.log("iam here");
+      console.log(res);
       return res.json();
     })
     .catch((err) => {

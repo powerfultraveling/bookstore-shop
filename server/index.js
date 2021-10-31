@@ -46,6 +46,7 @@ app.delete("/api/delete/:id", productController.deleteProduct);
 app.post("/api/register", userController.register);
 app.post("/api/login", userController.logIn);
 app.get("/api/authorize", userController.authorize);
+app.post("/api/google/login", userController.googleLogInHandler);
 app.post("/api/cart", cartController.addCart);
 app.get("/api/cart/:id", cartController.getCart);
 

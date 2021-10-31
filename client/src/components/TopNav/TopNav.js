@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { getMe } from "../../API";
 import { AuthContext, CartContext } from "../../contexts";
 import { clearAuthLocal, getAuthLocal, getCartLocal } from "../../utils";
-import style from "./TopNav.css";
+import styles from "./TopNav.module.css";
 
 export default function TopNav() {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +18,7 @@ export default function TopNav() {
         console.log("error");
         return;
       }
+      console.log(res.data);
       setUser(res.data);
     });
   }, []);
@@ -27,37 +28,28 @@ export default function TopNav() {
     clearAuthLocal();
   }
   return (
-    <div className="Top-nav">
-      <div className="top-nav-block">
-        <div className="top-nav-user">
+    <div className={styles.Top_nav}>
+      <div className={styles.top_nav_block}>
+        <div className={styles.top_nav_user}>
           {user && (
             <div>
               <span onClick={handleLogout}>
-                <a className=" ft-TC " href="/logout">
-                  Log Out
+                <a className={styles.login_box} href="/logout">
+                  登出
                 </a>
               </span>
-              <a href={`/cart/${user.id}`}>
+              <a href={`/cart`}>
                 <img
                   src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/ffffff/external-cart-furniture-vitaliy-gorbachev-fill-vitaly-gorbachev-2.png"
                   alt="cart"
-                  style={{ width: "20px", height: "auto" }}
+                  style={{ width: "20px", height: "auto", marginLeft: "5px" }}
                 />
               </a>
             </div>
           )}
           {!user && (
-            <div>
-              <span style={{ marginRight: "10px" }}>
-                <a className=" ft-TC" href="/login">
-                  登入
-                </a>
-              </span>
-              <span>
-                <a className=" ft-TC" href="/join">
-                  註冊
-                </a>
-              </span>
+            <div className={styles.login_box}>
+              <a href="/login">登入 / 註冊</a>
             </div>
           )}
         </div>

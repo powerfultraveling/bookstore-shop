@@ -1,9 +1,14 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
 import { getMe } from "../../API";
 import { AuthContext, CartContext } from "../../contexts";
-import { setCartLocal, getCartLocal, getAuthLocal } from "../../utils";
+import {
+  setCartLocal,
+  getCartLocal,
+  getAuthLocal,
+  setAuthLocal,
+} from "../../utils";
 import styles from "../../css/cart.module.css";
 
 function CartCard(props) {
@@ -165,16 +170,22 @@ function Cart() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/cart/${id}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setCartItems(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const token = getAuthLocal();
+    getMe(token).then((data) => {
+      console.log(data.data.id);
+      setUser(data.data);
+      const id = data.data.id;
+      fetch(`http://localhost:3001/api/cart/${id}`)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setCartItems(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   }, []);
 
   function handleAdd(item) {

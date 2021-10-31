@@ -1,24 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
-import { register } from "../../API";
+import GoogleLogin from "react-google-login";
+
+import { register, getMe, googleAuth } from "../../API";
 import { setAuthLocal } from "../../utils";
+import { AuthContext } from "../../contexts";
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
 import Footer from "../../components/Footer/Footer";
-import style from "./style.css";
+import styles from "../../css/LogIn.module.css";
+import pencil from "../../img/pencil.png";
 
 function Join() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [passWord, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMessage, setErroeMessage] = useState("");
+
+  const { setUser } = useContext(AuthContext);
 
   let history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();
-    register(firstName, lastName, email, passWord).then((data) => {
-      console.log(data);
+    register(firstName, lastName, email, password).then((data) => {
       setAuthLocal(data);
       setFirstName("");
       setLastName("");
@@ -27,63 +32,102 @@ function Join() {
     });
   }
 
+  function responseGoogle(response) {
+    console.log(response.profileObj);
+    const userInfo = response.profileObj;
+    googleAuth(userInfo.familyName, userInfo.givenName, userInfo.email)
+      .then((data) => {
+        setAuthLocal(data.token);
+        getMe(data.token)
+          .then((data) => {
+            setUser(data);
+          })
+          .catch((err) => {
+            console.log(err.toString());
+          });
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <div>
-      <SmallNavBar></SmallNavBar>
-      <section className="form-section">
-        <form className="join-form" onSubmit={handleSubmit}>
-          <h2 class="title">Join.</h2>
-          <div>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
-              placeholder="firstname*"
-              className="input"
-            ></input>
+      <section className={styles.main_sec}>
+        <div className={styles.register_box}>
+          <div className={styles.back_box}>
+            <a href="/login" className={styles.back}>
+              回上一頁
+            </a>
           </div>
-          <div>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-              placeholder="lastname*"
-              className="input"
-            ></input>
-          </div>
-          <div>
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              placeholder="email*"
-              className="input"
-            ></input>
-          </div>
-          <div>
-            <input
-              type="password"
-              value={passWord}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              placeholder="Password*"
-              className="input"
-            ></input>
-          </div>
-          <div style={{ display: "flex", justifyContent: "end" }}>
-            <input type="submit" value="submit" className="submit-btn"></input>
-          </div>
-          {errorMessage && <span style={{ color: "red" }}>{errorMessage}</span>}
-        </form>
+          <form className={styles.login_form} onSubmit={handleSubmit}>
+            <div className={styles.logo_box}>
+              <img src={pencil}></img>
+            </div>
+            <div>
+              <span className={styles.title}>註冊不二堂帳號?</span>
+            </div>
+            <div className={styles.text_input_box}>
+              <label>Email</label>
+              <br />
+              <input
+                className={styles.text_input}
+                type="text"
+                placeholder="信箱"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              ></input>
+            </div>
+            <div className={styles.text_input_box}>
+              <label>帳號</label>
+              <br />
+              <input
+                className={styles.text_input}
+                type="text"
+                placeholder="帳號名稱*"
+                value={email}
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                }}
+              ></input>
+            </div>
+            <div className={styles.text_input_box}>
+              <label>password</label>
+              <br />
+              <input
+                className={styles.text_input}
+                type="password"
+                placeholder="Passowrd*"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              ></input>
+            </div>
+            <div className={styles.text_input_box}>
+              <input
+                className={styles.login_btn}
+                type="submit"
+                value="Sign In"
+              ></input>
+            </div>
+            <div className={styles.googleBox}>
+              <span>用 google 登入?</span>
+            </div>
+            <GoogleLogin
+              clientId="665788213127-6th3abpmu8cfjs4k0s5u86i35klfp682.apps.googleusercontent.com"
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
+            {errorMessage && <span className="error">{errorMessage}</span>}
+          </form>
+        </div>
       </section>
-      <Footer></Footer>
     </div>
   );
 }

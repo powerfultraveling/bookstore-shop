@@ -1,6 +1,5 @@
 const db = require("../models");
 const User = db.User;
-
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -90,6 +89,45 @@ const userController = {
       console.log(decoded);
       res.json({ ok: 1, data: { id: decoded.id, role: decoded.role } });
     });
+  },
+
+  googleLogInHandler: (req, res) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const role = req.body.role;
+    console.log(firstname);
+
+    User.findOrCreate({
+      where: {
+        firstName: firstname,
+        lastName: lastname,
+        email: email,
+      },
+      default: {
+        firstName: firstname,
+        lastName: lastname,
+        email: email,
+        role: role,
+      },
+      raw: true,
+    })
+      .then((user) => {
+        console.log("hallo dear");
+        console.log(user[0].id);
+
+        const token = jwt.sign({ id: user[0].id, role: user[0].role }, secret);
+        res.json({
+          ok: 1,
+          token: token,
+        });
+      })
+      .catch((err) => {
+        res.json({
+          errorMessage: err.toString(),
+        });
+        return;
+      });
   },
 };
 

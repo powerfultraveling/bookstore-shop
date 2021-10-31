@@ -12,13 +12,24 @@ input:focus {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 700px;
-  background-color: rgb(248, 248, 248);
+  min-height: 700px;
+  background-color: rgb(226, 226, 226);
+  padding-bottom: 40px;
+}
+
+.back_box {
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+.back {
+  font-size: 14px;
+  color: rgb(167, 56, 56);
 }
 
 .login_box {
-  width: 400px;
-  height: 450px;
+  width: 450px;
+  height: 600px;
   margin: 30px auto;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
@@ -27,8 +38,18 @@ input:focus {
 }
 
 .register_box {
-  width: 400px;
-  height: 100px;
+  width: 450px;
+  height: 750px;
+  margin: 30px auto;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  background-color: #fff;
+}
+
+.to_register_box {
+  width: 450px;
+  height: 60px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
@@ -38,10 +59,33 @@ input:focus {
   background-color: #fff;
 }
 
+.register_box a {
+  color: rgb(128, 128, 128);
+  text-decoration: none;
+}
+
+.logo_box {
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.logo_box img {
+  width: 200px;
+}
+
 .login_form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.text_input_box {
+  margin-top: 30px;
+}
+
+.text_input_box label {
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .text_input {
@@ -49,32 +93,24 @@ input:focus {
   height: 40px;
   border: rgb(199, 199, 199) 1px solid;
   border-radius: 5px;
-  margin-bottom: 30px;
   font-size: 16px;
   padding: 10px;
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 300;
-  margin-top: 30px;
-  margin-bottom: 40px;
+  font-size: 12px;
+  color: rgb(82, 82, 82);
 }
 
 .login_btn {
   color: white;
-  background-color: black;
+  background-color: #002058;
   border: none;
   border-radius: 5px;
   margin-top: 20px;
   height: 40px;
   width: 300px;
   cursor: pointer;
-  transition: width 0.5s, height 0.5s;
-}
-
-.login_btn:hover {
-  width: 110px;
 }
 
 .error {
@@ -83,7 +119,7 @@ input:focus {
 }
 
 .googleBox {
-  padding: 20px;
+  padding: 40px;
 }
 
 .googleBox span {

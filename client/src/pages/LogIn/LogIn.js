@@ -7,6 +7,7 @@ import styles from "../../css/LogIn.module.css";
 import { logIn, getMe } from "../../API";
 import { setAuthLocal, saveUser } from "../../utils";
 import { AuthContext } from "../../contexts";
+import pencil from "../../img/pencil.png";
 
 export default function LogIn() {
   const [email, setEmail] = useState("");
@@ -29,21 +30,41 @@ export default function LogIn() {
 
   function responseGoogle(response) {
     console.log(response);
+    console.log(response.tokenId);
+    fetch("http://localhost:3001/api/google/token", {
+      method: "POST",
+      body: JSON.stringify({
+        token: response.tokenId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.toString());
+      });
   }
 
   return (
     <div>
-      <SmallNavBar></SmallNavBar>
       <section className={styles.main_sec}>
         <div className={styles.login_box}>
+          <div className={styles.back_box}>
+            <a href="/" className={styles.back}>
+              回上一頁
+            </a>
+          </div>
           <form className={styles.login_form} onSubmit={handleSubmit}>
-            <div>
-              <img src="../../img/login.png" style={{ width: "100px" }}></img>
+            <div className={styles.logo_box}>
+              <img src={pencil}></img>
             </div>
             <div>
-              <h2 className={styles.title}>登入</h2>
+              <span className={styles.title}>用不二堂帳號登入 ?</span>
             </div>
-            <div>
+            <div className={styles.text_input_box}>
               <input
                 className={styles.text_input}
                 type="text"
@@ -54,7 +75,7 @@ export default function LogIn() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className={styles.text_input_box}>
               <input
                 className={styles.text_input}
                 type="password"
@@ -65,7 +86,7 @@ export default function LogIn() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className={styles.text_input_box}>
               <input
                 className={styles.login_btn}
                 type="submit"
@@ -85,13 +106,10 @@ export default function LogIn() {
             {errorMessage && <span className="error">{errorMessage}</span>}
           </form>
         </div>
-        <div className={styles.register_box}>
-          <span>
-            還沒有帳號嗎?{" "}
-            <a href="#" style={{ color: "blue" }}>
-              註冊
-            </a>
-          </span>
+        <div className={styles.to_register_box}>
+          <a href="/join">
+            還沒有帳號嗎? <span style={{ color: "brown" }}>註冊</span>
+          </a>
         </div>
       </section>
     </div>
