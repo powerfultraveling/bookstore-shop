@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
+import PayPage from "./PayPage";
 import { getMe } from "../../API";
 import { AuthContext, CartContext } from "../../contexts";
 import {
@@ -21,11 +22,14 @@ function CartCard(props) {
     <div className={styles.card}>
       <div className={`${styles.box_10} ${styles.center}`}>
         <button
+          className={styles.check_btn}
           onClick={() => {
             setOrderProducts((arr) => [...arr, item.Product]);
             setSum((sum) => sum + item.Product.price);
           }}
-        ></button>
+        >
+          選取
+        </button>
       </div>
       <div className={`${styles.box_60} ${styles.fl_hr}`}>
         <img className={styles.card_img} src={item.Product.image}></img>
@@ -47,6 +51,7 @@ function CartPage(props) {
   const setOrderProducts = props.setOrderProducts;
   const cartItems = props.cartItems;
   const setPage = props.setPage;
+  console.log(cartItems);
 
   return (
     <div>
@@ -98,68 +103,6 @@ function CartPage(props) {
   );
 }
 
-function PayCard(props) {
-  const item = props.item;
-
-  return (
-    <div className={`${styles.payCard}`}>
-      <div className={`${styles.box_60} ${styles.center}`}>
-        <img className={`${styles.payCard_img}`} src={item.image}></img>
-        <span>{item.name}</span>
-      </div>
-      <div className={`${styles.box_20} ${styles.center}`}>{item.amount}</div>
-      <div className={`${styles.box_20} ${styles.center}`}>{item.price}</div>
-    </div>
-  );
-}
-
-function PayPage(props) {
-  const sum = props.sum;
-  const setSum = props.setSum;
-  const orderProducts = props.orderProducts;
-  const setOrderProducts = props.setOrderProducts;
-  const cartItems = props.cartItems;
-  const setPage = props.setPage;
-
-  return (
-    <div>
-      <div className={styles.cart_procedure}>
-        <div>
-          <h2 className={styles.cart_title}>購物車</h2>
-        </div>
-        <div>
-          <span className={styles.dot_current}>1</span>
-          <span className={styles.cart_title_current}>選擇商品</span>
-        </div>
-        <div className={styles.line}></div>
-        <div>
-          <span className={styles.dot_current}>2</span>
-          <span className={styles.cart_title_current}>填寫資料</span>
-        </div>
-      </div>
-      <section className={styles.payPage_main_sec}>
-        <div className={`${styles.fl_hr_lf}`}>
-          <span
-            onClick={() => {
-              setPage("cart");
-            }}
-          >
-            回到購物車
-          </span>
-        </div>
-        <div className={`${styles.box}`}>
-          {orderProducts.map((item) => (
-            <PayCard item={item} />
-          ))}
-        </div>
-        <div className={`${styles.box}`}></div>
-        <div className={`${styles.box}`}></div>
-        <div className={`${styles.box}`}></div>
-      </section>
-    </div>
-  );
-}
-
 function Cart() {
   const { cart, setCart } = useContext(CartContext);
   const { user, setUser } = useContext(AuthContext);
@@ -180,7 +123,11 @@ function Cart() {
           return res.json();
         })
         .then((data) => {
-          setCartItems(data);
+          const newData = data.map((item) => {
+            let temp = { ...item, checked: false };
+            return temp;
+          });
+          setCartItems(newData);
         })
         .catch((err) => {
           console.log(err);
@@ -188,9 +135,6 @@ function Cart() {
     });
   }, []);
 
-  function handleAdd(item) {
-    console.log(item);
-  }
   return (
     <div>
       <SmallNavBar></SmallNavBar>
