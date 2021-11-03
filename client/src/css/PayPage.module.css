@@ -1,0 +1,197 @@
+/* pay page */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.cl-red {
+  color: red;
+}
+
+.payPage_main_sec {
+  width: 100%;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box {
+  width: 750px;
+  min-height: 100px;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: rgb(201, 201, 201) 1px solid;
+}
+
+.box_dark {
+  width: 750px;
+  min-height: 100px;
+  margin-top: 30px;
+  border-radius: 5px;
+  background-color: rgb(238, 238, 238);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.box_container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.payCard {
+  display: flex;
+  align-items: center;
+  width: 750px;
+  height: 100px;
+  border-radius: 2px;
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.payCard_img {
+  width: 100px;
+}
+
+.box_block {
+  margin-bottom: 50px;
+}
+.box_recipient {
+  background-color: rgb(216, 216, 216);
+  border: none;
+  border-radius: 5px;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 150px;
+  cursor: pointer;
+}
+
+.box_recipient_item {
+  margin-bottom: 5px;
+}
+
+.edit_btn {
+  background-color: none;
+  border: none;
+  text-decoration: black;
+}
+
+.order_comment {
+  width: 100%;
+  height: 300px;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.order_comment:focus {
+  outline: none;
+}
+
+.box_title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* recipientForm */
+.recipientForm {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.exit_btn {
+  width: 15px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.rec_container {
+  width: 600px;
+  height: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+}
+
+.rec_text_input_box {
+  margin-top: 20px;
+}
+
+.rec_text_input {
+  width: 450px;
+  height: 40px;
+  border: rgb(212, 212, 212) solid 1px;
+  border-radius: 5px;
+  padding-left: 5px;
+  font-size: 16px;
+}
+
+.rec_number_input {
+  width: 200px;
+  height: 40px;
+  border: rgb(212, 212, 212) solid 1px;
+  border-radius: 5px;
+}
+
+.rec_label {
+  font-weight: 600;
+}
+
+.submit_btn {
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #002058;
+  color: white;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cancel_btn {
+  width: 100px;
+  height: 40px;
+  border: black 1px solid;
+  border-radius: 5px;
+  color: black;
+  background-color: #fff;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.form_container {
+  height: 60%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20%;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-bottom: rgb(206, 206, 206) solid 1px;
+}
+
+.buttom_container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  border-top: rgb(206, 206, 206) solid 1px;
+  height: 25%;
+  margin-right: 20px;
+}
