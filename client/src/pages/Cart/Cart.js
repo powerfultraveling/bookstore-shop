@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
 import PayPage from "./PayPage";
-import { getMe } from "../../API";
+import { getMe, getCartItem } from "../../API";
 import { AuthContext, CartContext } from "../../contexts";
 import {
   setCartLocal,
@@ -118,10 +118,7 @@ function Cart() {
       console.log(data.data.id);
       setUser(data.data);
       const id = data.data.id;
-      fetch(`http://localhost:3001/api/cart/${id}`)
-        .then((res) => {
-          return res.json();
-        })
+      getCartItem(id)
         .then((data) => {
           const newData = data.map((item) => {
             let temp = { ...item, checked: false };

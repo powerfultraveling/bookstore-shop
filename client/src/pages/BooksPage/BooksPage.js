@@ -1,37 +1,25 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../../API";
-import style from "./style.css";
+import { getAllBooks } from "../../API";
+import styles from "../../css/StationariesPage.module.css";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+import { ProductPageCard } from "../../components/Card/ProductPageCard";
 
-function Card(props) {
-  const product = props.product;
-  return (
-    <div className="card">
-      <div className="image-box">
-        <img className="card-image" src={product.image} alt="card"></img>
-      </div>
-      <div>
-        <div>{product.title}</div>
-        <div>${product.price}</div>
-      </div>
-    </div>
-  );
-}
 
 function BooksPage() {
-  const [products, setProdocts] = useState([]);
+  const [books, setBooks] = useState([]);
   useEffect(() => {
-    getProducts().then((data) => {
-      setProdocts(data);
+    getAllBooks().then((data) => {
+      console.log(data)
+      setBooks(data)
     });
   }, []);
   return (
     <div>
       <NavBar></NavBar>
-      <section>
-        {products.map((item) => (
-          <Card product={item} />
+      <section className={styles.sta_section}>
+        {books.map((item) => (
+          <ProductPageCard product={item} />
         ))}
       </section>
       <Footer></Footer>

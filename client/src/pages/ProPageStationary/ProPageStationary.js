@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
 import TopNav from "../../components/TopNav/TopNav";
 import Footer from "../../components/Footer/Footer";
-import { getSingleProduct } from "../../API";
+import { getSingleProduct, addItemToCart } from "../../API";
 import { AuthContext, CartContext } from "../../contexts";
 import { setCartLocal, getCartLocal } from "../../utils";
 import style from "./style.css";
@@ -26,17 +26,8 @@ function ProPageStationary() {
     console.log(user);
     const userId = user.id;
     const productId = product.id;
+    addItemToCart(userId, productId);
 
-    fetch("http://localhost:3001/api/cart", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: userId,
-        productId: productId,
-      }),
-    });
   }
 
   return (

@@ -30,6 +30,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.get("/api/stationaries", productController.getProductsStationary);
+app.get("/api/books", productController.getProductsBook);
 app.get("/api/product", productController.getProduct);
 app.get("/api/product/:id", productController.getSingleProduct);
 app.post(

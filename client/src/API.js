@@ -70,6 +70,9 @@ export function getMe(token) {
     });
 }
 
+
+
+
 //Products Api
 export function getProducts() {
   return fetch(`${baseURL}/product`).then((res) => {
@@ -82,4 +85,38 @@ export function getSingleProduct(id) {
     console.log("Hallo");
     return res.json();
   });
+}
+
+export function getAllStationaries(){
+  return fetch(`${baseURL}/stationaries`).then((res) => {
+    return res.json();
+  })
+}
+
+export function getAllBooks(){
+  return fetch(`${baseURL}/books`).then((res)=>{
+    return res.json()
+  })
+}
+
+
+
+//Carts API
+export function addItemToCart(userId, productId){
+  return fetch(`${baseURL}/cart`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      userId: userId,
+      productId: productId,
+    }),
+  });
+}
+
+export function getCartItem(id){
+  return fetch(`${baseURL}/cart/${id}`).then((res) => {
+    return res.json();
+  })
 }
