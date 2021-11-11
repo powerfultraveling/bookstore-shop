@@ -1,7 +1,7 @@
 # FUJI BOOKSTORE
 
 ## 簡介
-這是一個前端使用 React.js 後端使用 Express.js 的迷你電商網站。用戶可以在上面瀏覽商品、下單；店家可以使用後台管理系統管理商品、訂單。
+這是一個前端使用 React.js 後端使用 Express.js 的迷你電商網站。用戶可以在上面瀏覽文具以及書籍、並在線上購物；店家可以使用後台管理系統管理商品、訂單。
 
 ## 功能
 
@@ -29,9 +29,13 @@
 
 ## 使用的技術
 ### 前端: 
-React.js, css module
+React.js, webpack,  Babel
 ### 後端:
 Node.js, Express.js, Sequelize, MySQL
+### 串接的外部 API:
+1. Google 0Auth
+2. 綠界金流(開發中) 
+
 
 
 
