@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllStationaries } from "../../API";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+import TopNav from "../../components/TopNav/TopNav";
 import styles from "../../css/StationariesPage.module.css";
 import { ProductPageCard } from "../../components/Card/ProductPageCard";
 
@@ -20,6 +21,7 @@ function StationariesPage() {
   }, []);
   return (
     <div>
+      <TopNav></TopNav>
       <NavBar></NavBar>
       <section className={styles.sta_section}>
         {stationaries.map((item) => (

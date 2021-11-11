@@ -71,7 +71,7 @@
 }
 
 .main_sec {
-  width: 1000px;
+  width: 1200px;
   min-height: 600px;
   margin: 30px auto;
   display: flex;
@@ -83,7 +83,7 @@
   align-items: center;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  width: 600px;
+  width: 800px;
   height: 150px;
   margin-bottom: 10px;
   padding-right: 5px;
@@ -93,8 +93,8 @@
   width: 10%;
 }
 
-.box_60 {
-  width: 60%;
+.box_50 {
+  width: 50%;
 }
 
 .box_5 {

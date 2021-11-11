@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
 import { getMe } from "../../API";
 import { AuthContext, CartContext } from "../../contexts";

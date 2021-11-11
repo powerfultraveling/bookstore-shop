@@ -2,7 +2,8 @@ import React, { useEffect, useContext, useState } from "react";
 import { getMe } from "../../API";
 import { AuthContext, CartContext } from "../../contexts";
 import { clearAuthLocal, getAuthLocal, getCartLocal } from "../../utils";
-import styles from "./TopNav.module.css";
+import styles from "../../css/TopNav.module.css"
+import cart from "../../img/cart.png";
 
 export default function TopNav() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +33,7 @@ export default function TopNav() {
       <div className={styles.top_nav_block}>
         <div className={styles.top_nav_user}>
           {user && (
-            <div>
+            <div className={styles.flex}>
               <span onClick={handleLogout}>
                 <a className={styles.login_box} href="/logout">
                   登出
@@ -40,9 +41,9 @@ export default function TopNav() {
               </span>
               <a href={`/cart`}>
                 <img
-                  src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/ffffff/external-cart-furniture-vitaliy-gorbachev-fill-vitaly-gorbachev-2.png"
+                  src={cart}
                   alt="cart"
-                  style={{ width: "20px", height: "auto", marginLeft: "5px" }}
+                  style={{ width: "30px", height: "auto", marginLeft: "5px" }}
                 />
               </a>
             </div>
