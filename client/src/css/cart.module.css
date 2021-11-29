@@ -3,6 +3,8 @@
   padding: 0;
 }
 
+/* for general use */
+
 .fl_hr {
   display: flex;
   align-items: center;
@@ -19,6 +21,14 @@
   justify-content: center;
   align-items: center;
 }
+
+.flex_hor_evenly {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* general in payPage and cartPage */
 
 .cart_procedure {
   display: flex;
@@ -78,6 +88,8 @@
   justify-content: space-between;
 }
 
+/* cartCard */
+
 .card {
   display: flex;
   align-items: center;
@@ -112,6 +124,7 @@
 .card_img {
   width: 100px;
 }
+
 .delete_btn {
   border: none;
   border-radius: 50%;
@@ -120,6 +133,17 @@
   height: 20px;
   background-color: rgb(204, 204, 204);
 }
+
+.amount_btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+/* infornation box */
+
 .info_block {
   width: 300px;
   height: 200px;

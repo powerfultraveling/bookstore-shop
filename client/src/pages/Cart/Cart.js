@@ -20,7 +20,7 @@ function Cart() {
   const { user, setUser } = useContext(AuthContext);
   const [page, setPage] = useState("cart");
   const [cartItems, setCartItems] = useState([]);
-  const [orderProducts, setOrderProducts] = useState([]);
+  const [orderItems, setOrderItems] = useState([]);
   const [sum, setSum] = useState(0);
   const { id } = useParams();
 
@@ -44,6 +44,13 @@ function Cart() {
     });
   }, []);
 
+  useEffect(()=>{
+    console.log(cartItems);
+  }, [cartItems])
+
+  useEffect(()=>{
+    console.log(orderItems)
+  }, [orderItems])
   return (
     <div>
       <SmallNavBar></SmallNavBar>
@@ -51,8 +58,8 @@ function Cart() {
         <CartPage
           cartItems={cartItems}
           setCartItems={setCartItems}
-          orderProducts={orderProducts}
-          setOrderProducts={setOrderProducts}
+          orderItems={orderItems}
+          setOrderItems={setOrderItems}
           sum={sum}
           setSum={setSum}
           setPage={setPage}
@@ -62,8 +69,8 @@ function Cart() {
         <PayPage
           cartItems={cartItems}
           setCartItems={setCartItems}
-          orderProducts={orderProducts}
-          setOrderProducts={setOrderProducts}
+          orderItems={orderItems}
+          setOrderItems={setOrderItems}
           sum={sum}
           setSum={setSum}
           setPage={setPage}

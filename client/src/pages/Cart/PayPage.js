@@ -15,8 +15,8 @@ import cross from "../../img/cross.png";
 export default function PayPage(props) {
   const sum = props.sum;
   const setSum = props.setSum;
-  const orderProducts = props.orderProducts;
-  const setOrderProducts = props.setOrderProducts;
+  const orderItems = props.orderItems;
+  const setOrderItems = props.setOrcerItems;
   const cartItems = props.cartItems;
   const setPage = props.setPage;
 
@@ -66,7 +66,7 @@ export default function PayPage(props) {
           </span>
         </div>
         <div className={`${styles.box}`}>
-          {orderProducts.map((item) => (
+          {orderItems.map((item) => (
             <PayCard item={item} />
           ))}
         </div>

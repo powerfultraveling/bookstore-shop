@@ -1,20 +1,30 @@
+//external module
 import { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import GoogleLogin from "react-google-login";
+import {useSelector, useDispatch} from "react-redux";
+
+//redux action
+import { setUser } from "../../redux/user/userAction";
+
+//components
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
 import Footer from "../../components/Footer/Footer";
-import styles from "../../css/LogIn.module.css";
+
+
+//functions
 import { logIn, getMe } from "../../API";
 import { setAuthLocal, saveUser } from "../../utils";
-import { AuthContext } from "../../contexts";
+
+//static
+import styles from "../../css/LogIn.module.css";
 import pencil from "../../img/pencil.png";
 
 export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErroeMessage] = useState("");
-
-  const { setUser } = useContext(AuthContext);
+  const user = useSelector((state)=>state.user.user);
 
   const history = useHistory();
   function handleSubmit(e) {

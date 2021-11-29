@@ -64,6 +64,9 @@ const cartController = {
       })
       .catch((err) => {
         console.log(err);
+        res.json({
+          errorMessage: err.toString()
+        })
       });
   },
 };

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { AuthContext, CartContext } from "./contexts";
 
 import HomePage from "./pages/HomePage/HomePage";
 import LogIn from "./pages/LogIn/LogIn";
@@ -19,8 +18,6 @@ function App() {
   const [cart, setCart] = useState([]);
 
   return (
-    <CartContext.Provider value={{ cart, setCart }}>
-      <AuthContext.Provider value={{ user, setUser }}>
         <Router>
           <div>
             <Switch>
@@ -60,8 +57,6 @@ function App() {
             </Switch>
           </div>
         </Router>
-      </AuthContext.Provider>
-    </CartContext.Provider>
   );
 }
 
