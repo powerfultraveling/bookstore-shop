@@ -3,6 +3,9 @@
 ## 簡介
 這是一個前端使用 React.js 後端使用 Express.js 的迷你電商網站。用戶可以在上面瀏覽文具以及書籍、並在線上購物；店家可以使用後台管理系統管理商品、訂單。
 
+## 狀態
+開發中.....
+
 ## 功能
 
 ### 用戶
@@ -11,7 +14,8 @@
 3. 使用 google 帳號登入
 4. 依類別瀏覽商品
 5. 加入購物車
-6. 下單功能
+6. 下單
+7. 線上付款
 
 ### 店家
 1. 管理商品
@@ -22,17 +26,19 @@
 6. 管理訂單
 7. 管理用戶
 
-## 專案 schema
+## schema
 
 <img width="380" alt="schema" src="https://user-images.githubusercontent.com/81896228/140879257-de36e39e-108a-4bd7-9c5e-2f786f78e1ca.PNG">
 
 
-## 使用的技術
+## 使用技術
 ### 前端: 
-React.js, webpack,  Babel
+React.js, React-Router, react-redux, redux
 ### 後端:
-Node.js, Express.js, Sequelize, MySQL
-### 串接的外部 API:
+Node.js, Express.js, Sequelize Migration, MySQL
+### 佈署:
+Heroku
+### 外部 API:
 1. Google 0Auth
 2. 綠界金流(開發中) 
 
