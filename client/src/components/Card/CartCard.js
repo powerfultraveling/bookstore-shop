@@ -1,7 +1,13 @@
-import React from "react";
+//modules
+import {useEffect} from "react";
+
+//statics
 import styles from "../../css/cart.module.css";
+import { setCart } from "../../redux/cart/cartAction";
+
 
 export default function CartCard(props) {
+  //props
   const item = props.data;
   const orderItems = props.orderItems;
   const setOrderItems = props.setOrderItems;
@@ -10,6 +16,44 @@ export default function CartCard(props) {
   const setSum = props.setSum;
   const sum = props.sum;
 
+  useEffect(()=>{
+    console.log(cartItems)
+  },[])
+
+  useEffect(()=>{
+    let temp = 0;
+    for(let i = 0; i<orderItems.length; i++){
+      temp = temp + (orderItems[i].amount*orderItems[i].Product.price)
+    }
+    console.log(temp)
+    setSum(temp)
+  }, [orderItems])
+
+  useEffect(()=>{
+    const tempOrder = cartItems.filter((element)=>{
+      return element.checked === true
+    })
+
+    setOrderItems(tempOrder)
+  },[cartItems])
+
+  //event handler
+  function hadleDelete(){
+    const tempCartItems = cartItems.filter((element)=>{
+      return element.id !== item.id
+    })
+    setCartItems(tempCartItems);
+
+    const exitInOrderItems = orderItems.every((element) => {
+      return element.id === item.id;
+    });
+
+    if(exitInOrderItems === true){
+      const tempOrderItms = orderItems.filter((element)=>{
+        return element.id !== item.id
+      })
+    }
+  }
   return (
     <div className={styles.card}>
       <div className={`${styles.box_10} ${styles.center}`}>
@@ -19,9 +63,7 @@ export default function CartCard(props) {
             className={styles.check_btn}
             onClick={() => {
               item.checked = true;
-              setOrderItems([...orderItems, item]);
-              const totalPrice = item.Product.price * item.amount;
-              setSum(sum + totalPrice);
+              setCartItems(...cartItems, item)
             }}
           ></input>
         )}
@@ -32,12 +74,7 @@ export default function CartCard(props) {
             className={styles.uncheck_btn}
             onClick={() => {
               item.checked = false;
-              const temp = orderItems.filter((element) => {
-                return element.id !== item.id;
-              });
-              setOrderItems(temp);
-              const totalPrice = item.Product.price * item.amount;
-              setSum(sum - totalPrice);
+              setCartItems(...cartItems, item)
             }}
           ></input>
         )}
@@ -52,26 +89,12 @@ export default function CartCard(props) {
           onClick={() => {
             const temp = cartItems.map((element) => {
               if (element.id === item.id) {
-                element.amount--;
+                element.amount = element.amount - 1;
                 return element;
               }
               return element;
             });
             setCartItems(temp);
-
-            const exist = orderItems.every((element) => {
-              return element.id === item.id;
-            });
-            if (exist === true) {
-              const orderTemp = orderItems.map((element) => {
-                if (element.id === item.id) {
-                  element.amount--;
-                  return element;
-                }
-                return element;
-              });
-              setOrderItems(orderTemp);
-            }
           }}
         >
           -
@@ -82,27 +105,12 @@ export default function CartCard(props) {
           onClick={() => {
             const temp = cartItems.map((element) => {
               if (element.id === item.id) {
-                element.amount++;
+                element.amount = element.amount + 1;
                 return element;
               }
               return element;
             });
             setCartItems(temp);
-
-            const exit = orderItems.every((element) => {
-              return element.id === item.id;
-            });
-
-            if (exit === true) {
-              const orderTemp = orderItems.map((element) => {
-                if (element.id === item.id) {
-                  element.amount++;
-                  return element;
-                }
-                return element;
-              });
-              setOrderItems(orderTemp);
-            }
           }}
         >
           +
@@ -110,7 +118,7 @@ export default function CartCard(props) {
       </div>
       <div className={`${styles.box_15}`}>{item.Product.price}元</div>
       <div className={`${styles.box_5} ${styles.center}`}>
-        <button className={styles.delete_btn}>x</button>
+        <button className={styles.delete_btn} onClick={()=>{hadleDelete()}}>x</button>
       </div>
     </div>
   );

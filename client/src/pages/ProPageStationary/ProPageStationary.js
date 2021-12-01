@@ -1,19 +1,30 @@
-import React, { useEffect, useState, useContext } from "react";
+//modules
+import React, { useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch, useStore } from "react-redux";
+
+//redux-store
+import { setCart } from "../../redux/cart/cartAction";
+
+//components
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
 import TopNav from "../../components/TopNav/TopNav";
 import Footer from "../../components/Footer/Footer";
+
+//functions
 import { getSingleProduct, addItemToCart } from "../../API";
-import { AuthContext, CartContext } from "../../contexts";
 import { setCartLocal, getCartLocal } from "../../utils";
+
 import style from "./style.css";
 
 let idNumber = 0;
 function ProPageStationary() {
   const [product, setProduct] = useState([]);
-  const { cart, setCart } = useContext(CartContext);
-  const { user } = useContext(AuthContext);
-  const { id } = useParams();
+  const dispatch = useDispatch()
+  const user = useSelector((state)=>state.user.user);
+  const cart = useSelector((state)=>state.cart.cart);
+  const cartId = useSelector((state)=>state.cart.cartId);
+  const { id } = useParams();//product id
 
   useEffect(() => {
     getSingleProduct(id).then((data) => {
@@ -26,8 +37,24 @@ function ProPageStationary() {
     console.log(user);
     const userId = user.id;
     const productId = product.id;
-    addItemToCart(userId, productId);
 
+    const cartItem = {
+      cartId: cartId,
+      productId: productId,
+    }
+
+    
+    addItemToCart(userId, productId)
+    .then((res)=>{
+      return res.json
+    })
+    .then((data)=>{
+      dispatch(setCart([...cart, cartItem], cartId))
+      console.log(data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
   }
 
   return (

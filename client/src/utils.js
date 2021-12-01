@@ -10,9 +10,6 @@ export function clearAuthLocal() {
   window.localStorage.removeItem("token");
 }
 
-export function saveUser(user) {
-  window.localStorage.setItem("user", user);
-}
 
 export function getUser() {
   const data = window.localStorage.getItem("user");

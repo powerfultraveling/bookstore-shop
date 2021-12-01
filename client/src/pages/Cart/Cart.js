@@ -1,48 +1,36 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+//modules
+import React, { useEffect, useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+//components
+import TopNavBar from "../../components/TopNav/TopNav";
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
 import PayPage from "./PayPage";
-import { getMe, getCartItem } from "../../API";
-import { AuthContext, CartContext } from "../../contexts";
-import {
-  setCartLocal,
-  getCartLocal,
-  getAuthLocal,
-  setAuthLocal,
-} from "../../utils";
-import styles from "../../css/cart.module.css";
 import CartPage from "./CartPage";
+
+//static
+import styles from "../../css/cart.module.css";
 
 
 
 function Cart() {
-  const { cart, setCart } = useContext(CartContext);
-  const { user, setUser } = useContext(AuthContext);
   const [page, setPage] = useState("cart");
   const [cartItems, setCartItems] = useState([]);
   const [orderItems, setOrderItems] = useState([]);
   const [sum, setSum] = useState(0);
-  const { id } = useParams();
+  const user = useSelector((state)=>state.user.user);
+  const cart = useSelector((state)=>state.cart.cart);
 
-  useEffect(() => {
-    const token = getAuthLocal();
-    getMe(token).then((data) => {
-      console.log(data.data.id);
-      setUser(data.data);
-      const id = data.data.id;
-      getCartItem(id)
-        .then((data) => {
-          const newData = data.map((item) => {
-            let temp = { ...item, checked: false, amount: 1,};
-            return temp;
-          });
-          setCartItems(newData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
-  }, []);
+
+  useEffect(()=>{
+    console.log(cart)
+    const newCart = cart.map((item)=>{
+      let temp = {...item, checked: false, amount: 1}
+      return temp
+    })
+    setCartItems(newCart);
+  }, [cart])
+
 
   useEffect(()=>{
     console.log(cartItems);
@@ -51,8 +39,10 @@ function Cart() {
   useEffect(()=>{
     console.log(orderItems)
   }, [orderItems])
+
   return (
     <div>
+      <TopNavBar></TopNavBar>
       <SmallNavBar></SmallNavBar>
       {page === "cart" && (
         <CartPage

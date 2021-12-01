@@ -1,12 +1,22 @@
-import { useState, useEffect, useContext } from "react";
+//modules
+import { useState} from "react";
 import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from "react-google-login";
 
-import { register, getMe, googleAuth } from "../../API";
-import { setAuthLocal } from "../../utils";
-import { AuthContext } from "../../contexts";
+//redux-store
+import { setUser } from "../../redux/user/userAction";
+
+//components
 import SmallNavBar from "../../components/smallNavBar/smallNavBar";
 import Footer from "../../components/Footer/Footer";
+
+//functions
+import { register, getMe, googleAuth } from "../../API";
+import { setAuthLocal } from "../../utils";
+
+
+//static
 import styles from "../../css/LogIn.module.css";
 import pencil from "../../img/pencil.png";
 
@@ -16,10 +26,8 @@ function Join() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErroeMessage] = useState("");
-
-  const { setUser } = useContext(AuthContext);
-
-  let history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -40,7 +48,7 @@ function Join() {
         setAuthLocal(data.token);
         getMe(data.token)
           .then((data) => {
-            setUser(data);
+            dispatch(setUser(data));
           })
           .catch((err) => {
             console.log(err.toString());

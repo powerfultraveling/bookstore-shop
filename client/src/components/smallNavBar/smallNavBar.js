@@ -1,14 +1,18 @@
+//modules
 import React, { useEffect, useContext, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+//redux-store
+import { setUser } from "../../redux/user/userAction";
+
+//functions
 import { getMe } from "../../API";
-import { AuthContext, CartContext } from "../../contexts";
 import { clearAuthLocal, getAuthLocal, getCartLocal } from "../../utils";
 import style from "./style.css";
 
 function SmallNavBar() {
   const [isLoading, setIsLoading] = useState(true);
-  const { user, setUser } = useContext(AuthContext);
-  const { cart, setCart } = useContext(CartContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const token = getAuthLocal();
@@ -21,13 +25,13 @@ function SmallNavBar() {
         console.log("error");
         return;
       }
-      setUser(res.data);
+      dispatch(setUser(res.data))
     });
   }, []);
 
   function handleLogout() {
-    setUser(null);
     clearAuthLocal();
+    dispatch(setUser(null))
   }
 
   return (

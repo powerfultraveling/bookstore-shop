@@ -1,9 +1,16 @@
+//modules
 import React, { useEffect, useState } from "react";
+
+//components
 import SmallNavBar from "../../../../components/smallNavBar/smallNavBar";
 import Footer from "../../../../components/Footer/Footer";
 import AdminSideNav from "../../../../components/AdminSideNav/AdminSideNav";
 import AdminTopNav from "../../../../components/AdminTopNav/AdminTopNav";
+
+//functions
 import { getProducts } from "../../../../API";
+
+//static
 import style from "./style.css";
 function AdminProductCard(props) {
   const { image, name, price, id, handleDelete } = props;

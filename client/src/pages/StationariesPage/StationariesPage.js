@@ -1,10 +1,17 @@
+//modules
 import { useEffect, useState } from "react";
+
+//functions
 import { getAllStationaries } from "../../API";
+
+//components
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import TopNav from "../../components/TopNav/TopNav";
-import styles from "../../css/StationariesPage.module.css";
 import { ProductPageCard } from "../../components/Card/ProductPageCard";
+
+//static
+import styles from "../../css/StationariesPage.module.css";
 
 
 function StationariesPage() {

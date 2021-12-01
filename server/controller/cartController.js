@@ -1,4 +1,4 @@
-const { raw } = require("body-parser");
+
 const db = require("../models");
 const Cart = db.Cart;
 const Product = db.Product;
@@ -56,7 +56,7 @@ const cartController = {
           include: Product,
         })
           .then((data) => {
-            res.json(data);
+            res.json({data:data, cartId: cart.id});
           })
           .catch((err) => {
             res.json({ errorMessage: err.toString() });

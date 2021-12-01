@@ -1,13 +1,18 @@
+//modules
 import React, { useEffect, useState, useContext } from "react";
-import SmallNavBar from "../../components/smallNavBar/smallNavBar";
+import { useDispatch, useSelector } from "react-redux";
+
+
+//functions
 import { getMe } from "../../API";
-import { AuthContext, CartContext } from "../../contexts";
 import {
   setCartLocal,
   getCartLocal,
   getAuthLocal,
   setAuthLocal,
 } from "../../utils";
+
+//statics
 import styles from "../../css/cart.module.css";
 import payStyles from "../../css/PayPage.module.css";
 import cross from "../../img/cross.png";
@@ -28,6 +33,7 @@ export default function PayPage(props) {
 
   return (
     <div>
+
       {recipientForm === true && (
         <RecipientForm
           setRecName={setRecName}

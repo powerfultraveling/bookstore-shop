@@ -1,32 +1,17 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect,  useState } from "react";
 import { Link } from "react-router-dom";
 
 import { getMe } from "../../API";
-import { AuthContext, CartContext } from "../../contexts";
 import { clearAuthLocal, getAuthLocal, getCartLocal } from "../../utils";
 import style from "./NavBar.css";
 
 function NavBar() {
   const [isLoading, setIsLoading] = useState(true);
-  const { user, setUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    const token = getAuthLocal();
-    if (!token) {
-      console.log("no token");
-      return;
-    }
-    getMe(token).then((res) => {
-      if (res.ok === 0) {
-        console.log("error");
-        return;
-      }
-      setUser(res.data);
-    });
-  }, []);
+
+
 
   function handleLogout() {
-    setUser(null);
     clearAuthLocal();
   }
 

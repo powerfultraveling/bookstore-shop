@@ -1,20 +1,17 @@
 //external module
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import GoogleLogin from "react-google-login";
-import {useSelector, useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 
 //redux action
-import { setUser } from "../../redux/user/userAction";
+import { setUser, fetchUser } from "../../redux/user/userAction";
 
-//components
-import SmallNavBar from "../../components/smallNavBar/smallNavBar";
-import Footer from "../../components/Footer/Footer";
 
 
 //functions
 import { logIn, getMe } from "../../API";
-import { setAuthLocal, saveUser } from "../../utils";
+import { setAuthLocal} from "../../utils";
 
 //static
 import styles from "../../css/LogIn.module.css";
@@ -24,15 +21,20 @@ export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErroeMessage] = useState("");
-  const user = useSelector((state)=>state.user.user);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state=>state.user.isLoading)
+
 
   const history = useHistory();
+
   function handleSubmit(e) {
     e.preventDefault();
+    dispatch(fetchUser())
     logIn(email, password).then((data) => {
+      
       setAuthLocal(data.token);
       getMe(data.token).then((data) => {
-        setUser(data);
+        dispatch(setUser(data))
       });
       history.push("/");
     });
@@ -60,6 +62,7 @@ export default function LogIn() {
 
   return (
     <div>
+      {isLoading === true && <h1>hallo</h1>}
       <section className={styles.main_sec}>
         <div className={styles.login_box}>
           <div className={styles.back_box}>
