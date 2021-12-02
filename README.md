@@ -3,7 +3,7 @@
 ## 簡介
 這是一個前端使用 React.js 後端使用 Express.js 的迷你電商網站。用戶可以在上面瀏覽文具以及書籍、並在線上購物；店家可以使用後台管理系統管理商品、訂單。logo 以及 UI 色調啟發自在日本旅行時一家書店和門面掛的藍染棉布。
 
-![smallLogo](https://user-images.githubusercontent.com/81896228/144393735-9786a95e-63d9-4b37-a8cc-c0669b7f9866.png)
+<img width="380" alt="schema" src="https://user-images.githubusercontent.com/81896228/144393735-9786a95e-63d9-4b37-a8cc-c0669b7f9866.png">
 
 ## 狀態
 開發中.....
