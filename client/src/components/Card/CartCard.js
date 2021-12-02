@@ -62,8 +62,14 @@ export default function CartCard(props) {
             type="checkbox"
             className={styles.check_btn}
             onClick={() => {
-              item.checked = true;
-              setCartItems(...cartItems, item)
+              const tempCart = cartItems.map((element)=>{
+                if(element.id === item.id){
+                  element.checked = true;
+                  return element
+                }
+                return element
+              })
+              setCartItems(tempCart)
             }}
           ></input>
         )}
@@ -73,8 +79,14 @@ export default function CartCard(props) {
             checked="checked"
             className={styles.uncheck_btn}
             onClick={() => {
-              item.checked = false;
-              setCartItems(...cartItems, item)
+              const tempCart = cartItems.map((element)=>{
+                if(element.id === item.id){
+                  element.checked = false;
+                  return element
+                }
+                return element
+              })
+              setCartItems(tempCart)
             }}
           ></input>
         )}

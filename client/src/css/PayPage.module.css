@@ -9,6 +9,10 @@
   color: red;
 }
 
+.ft_600 {
+  font-weight: 600;
+}
+
 .payPage_main_sec {
   width: 100%;
   min-height: 700px;
@@ -46,7 +50,7 @@
   width: 750px;
   height: 100px;
   border-radius: 2px;
-  border-bottom: 1px solid rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(202, 202, 202);
 }
 
 .payCard_img {
@@ -56,6 +60,13 @@
 .box_block {
   margin-bottom: 50px;
 }
+
+.select {
+  height: 30px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
 .box_recipient {
   background-color: rgb(216, 216, 216);
   border: none;
@@ -86,6 +97,7 @@
   padding: 10px;
   border: none;
   border-radius: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }

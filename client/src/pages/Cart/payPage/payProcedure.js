@@ -1,13 +1,12 @@
 //modules
-import { useEffect } from "react";
+import React,{useState} from "react";
 
 //statics
-import styles from "../../css/cart.module.css";
+import styles from "../../../css/cart.module.css";
 
-
-export default function CartProcedure(){
+export default function PayProcedure(){
     return(
-    <div className={styles.cart_procedure}>
+        <div className={styles.cart_procedure}>
         <div>
           <h2 className={styles.cart_title}>購物車</h2>
         </div>
@@ -17,10 +16,9 @@ export default function CartProcedure(){
         </div>
         <div className={styles.line}></div>
         <div>
-          <span className={styles.dot}>2</span>
-          <span className={styles.cart_title_after}>填寫資料</span>
+          <span className={styles.dot_current}>2</span>
+          <span className={styles.cart_title_current}>填寫資料</span>
         </div>
       </div>
-
     )
 }

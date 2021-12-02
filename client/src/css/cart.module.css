@@ -12,8 +12,16 @@
 
 .fl_hr_lf {
   display: flex;
-  width: 100%;
+  width: 750px;
   justify-content: left;
+  margin-bottom: 20px;
+}
+
+.fl_hr_rt {
+  display: flex;
+  width: 750px;
+  justify-content: right;
+  margin-top: 30px;
 }
 
 .center {
