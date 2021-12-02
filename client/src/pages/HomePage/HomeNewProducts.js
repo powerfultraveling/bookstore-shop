@@ -9,21 +9,28 @@ import styles from "../../css/Homepage.module.css";
 
 export default function HomeNewProducts(){
     const [newProducts, setNewProducts] = useState([]);
-    
+
     useEffect(()=>{
         getProducts()
         .then((data)=>{
-            console.log(data)
+            setNewProducts(data)
         })
     },[])
 
     return(
       <div className={styles.scroll_box}>
-        <div className={styles.best_product}></div>
-        <div className={styles.best_product}></div>
-        <div className={styles.best_product}></div>
-        <div className={styles.best_product}></div>
+        {newProducts.map((item)=>
+            <HomePageCard item={item}></HomePageCard>
+        )}
       </div>
+    )
+}
 
+function HomePageCard(props){
+    const {item} = props;
+    return(
+        <div className={styles.best_product}>
+            {item.name}
+        </div>
     )
 }

@@ -7,6 +7,7 @@ import TopNav from "../../components/TopNav/TopNav";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import HomeCorousel from "./HomeCorousel";
+import HomeNewProducts from "./HomeNewProducts";
 
 
 
@@ -24,12 +25,7 @@ function HomePage() {
         <div style={{textAlign: "left", width: "1000px"}} className={styles.section_title}>
           十一月的精選物
         </div>
-        <div className={styles.scroll_box}>
-          <div className={styles.best_product}></div>
-          <div className={styles.best_product}></div>
-          <div className={styles.best_product}></div>
-          <div className={styles.best_product}></div>
-        </div>
+        <HomeNewProducts></HomeNewProducts>
       </div>
       <Footer></Footer>
     </div>

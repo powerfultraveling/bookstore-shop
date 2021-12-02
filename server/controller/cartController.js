@@ -38,6 +38,26 @@ const cartController = {
       });
   },
 
+  deleteCart:(req, res) =>{
+    const id = req.params.id;
+    Cart.findOne({
+      where: {
+        id: id,
+      },
+    })
+      .then((data) => {
+        data.destroy();
+      })
+      .then(() => {
+        Cart.findAll().then((data) => {
+          res.json(data);
+        });
+      })
+      .catch((err)=>{
+        res.json({err: err.toString()})
+      })
+  },
+
   getCart: (req, res) => {
     const id = req.params.id;
 
