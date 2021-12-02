@@ -7,23 +7,26 @@ import cross from "../../../img/cross.png";
 
 
 export default function RecipientForm(props) {
-    const setRecName = props.setRecName;
-    const setRecAddress = props.setRecAddress;
-    const setRecPhone = props.setRecPhone;
-    const setRecPost = props.setRecPost;
     const setRecipientForm = props.setRecipientForm;
-    const recName = props.recName;
-    const recPhone = props.recPhone;
-    const recPost = props.recPost;
-    const recAddress = props.recAddress;
-    const [formInfo, setFormInfo] = useState({name: recName,address: recAddress, phone: recPhone, post: recPost});
+    const recInfo = props.recInfo;
+    const setRecInfo = props.setRecInfo
+
+    const [formInfo, setFormInfo] = useState({
+      name: recInfo.name,
+      address: recInfo.Address, 
+      phone: recInfo.Phone,
+      post: recInfo.Post
+    });
 
     
     function editHandler(){
-      setRecName(formInfo.name);
-      setRecPhone(formInfo.phone);
-      setRecPost(formInfo.post);
-      setRecAddress(formInfo.address);
+      setRecInfo({
+        ...recInfo,
+        name: formInfo.name,
+        address: formInfo.address, 
+        phone: formInfo.phone, 
+        post: formInfo.post
+      })
       setRecipientForm(false)
     }
   

@@ -1,5 +1,5 @@
 //modules
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 //components
 import RecipientForm from "./payPage/RecipientForm";
@@ -16,13 +16,22 @@ export default function PayPage(props) {
   const sum = props.sum;
   const orderItems = props.orderItems;
   const setPage = props.setPage;
-
+  
+  //packed all the state in a object, much more efficient to sent as parameter
+  const [recInfo, setRecInfo] = useState(
+    { 
+      name: "", 
+      phone: "", 
+      address: "", 
+      delivery: "", 
+      post: "", 
+      email: "",
+      comment: "",
+  })
   const [recipientForm, setRecipientForm] = useState(false);
-  const [recName, setRecName] = useState();
-  const [recAddress, setRecAddress] = useState();
-  const [recPhone, setRecPhone] = useState();
-  const [recPost, setRecPost] = useState();
-  const [deliveryMethod, setDeliveryMethod] = useState();
+  useEffect(()=>{
+    console.log(recInfo)
+  },[])
 
   function submitHandler(){
 
@@ -32,15 +41,9 @@ export default function PayPage(props) {
     <div>
       {recipientForm === true && (
         <RecipientForm
-          setRecName={setRecName}
-          setRecAddress={setRecAddress}
-          setRecPhone={setRecPhone}
-          setRecPost={setRecPost}
-          setRecipientForm={setRecipientForm}
-          recName={recName}
-          recAddress={recAddress}
-          recPhone={recPhone}
-          recPost={recPost}
+        setRecipientForm= {setRecipientForm}
+         setRecInfo = {setRecInfo}
+         recInfo ={recInfo}
         ></RecipientForm>
       )}
       <PayProcedure></PayProcedure>
@@ -63,16 +66,19 @@ export default function PayPage(props) {
           <span>共計: {sum}</span>
         </div>
         <div className={`${payStyles.box_dark}`}>
-          <DeliveryInfo DeliveryMethod={deliveryMethod} setDeliveryMethod={setDeliveryMethod}></DeliveryInfo>
+          <DeliveryInfo 
+            setRecInfo={setRecInfo} 
+            recInfo={recInfo}>
+          </DeliveryInfo>
         </div>
         <div className={`${payStyles.box_dark}`}>
-          <RecipientInfo setRecipientForm={setRecipientForm}           
-          recName={recName}
-          recAddress={recAddress}
-          recPhone={recPhone}
-          recPost={recPost}></RecipientInfo>
+          <RecipientInfo
+            setRecipientForm={setRecipientForm}           
+            recInfo={recInfo}
+            setRecInfo={setRecInfo}> 
+          </RecipientInfo>
         </div>
-        <div>
+        <div className={payStyles.box_submit_btn}>
           <button className={payStyles.submit_btn} onClick={()=>{
             submitHandler()
           }}>確認付款</button>

@@ -23,7 +23,7 @@
 
 .box {
   width: 750px;
-  min-height: 100px;
+  min-height: 500px;
   margin-top: 30px;
   border-radius: 5px;
   border: rgb(201, 201, 201) 1px solid;
@@ -58,7 +58,7 @@
 }
 
 .box_block {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .select {
@@ -97,6 +97,7 @@
   padding: 10px;
   border: none;
   border-radius: 5px;
+  resize: none;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
@@ -206,4 +207,13 @@
   border-top: rgb(206, 206, 206) solid 1px;
   height: 25%;
   margin-right: 20px;
+}
+
+.box_submit_btn {
+  display: flex;
+  justify-content: right;
+  width: 750px;
+
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
