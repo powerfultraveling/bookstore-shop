@@ -33,7 +33,7 @@
 
 ## schema
 
-<img width="380" alt="schema" src="https://user-images.githubusercontent.com/81896228/140879257-de36e39e-108a-4bd7-9c5e-2f786f78e1ca.PNG">
+<img width="1280" alt="schema" src="https://user-images.githubusercontent.com/81896228/144571521-f6cb1ff4-fe35-4ebd-89bd-14daa6c936a6.png">
 
 
 ## 使用技術
